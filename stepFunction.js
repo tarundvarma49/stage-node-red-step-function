@@ -38,7 +38,7 @@ var appname
 var s3 = null
 var s3BucketName = null
 var endpointData = {}
-const API_ID = 'b228a5dbw9'
+const API_ID = 'haxlv8az0l'
 
 function prepopulateFlows(resolve) {
   var params = {}
@@ -206,7 +206,9 @@ var stepFunction = {
               j++
             })
             getLambdaMappings().then((vals) => {
+              console.log(dataEntry ,'-----------------------', vals)
               sFunction.convert(dataEntry, vals).then(function (definitions) {
+                console.log('definitions---',definitions);
                 definitions.forEach((def) => {
                   promises.push(sFunction.save(def))
                 })
@@ -354,9 +356,11 @@ var getLambdaMappings = async function () {
         })
         var finalObject = null;
         when.all(promises).then((data) => {
+          
           finalObject = Object.assign({}, ...data);
           finalObject['http response'] = 'arn:aws:lambda:us-east-1:133013689155:function:http-response-node';
           finalObject['getFeeReport'] = 'arn:aws:lambda:us-east-1:133013689155:function:wdev-lambda-winsights';
+          console.log('final---',finalObject)
           resolve(finalObject)
         })
       }else{
@@ -371,6 +375,7 @@ function fileReader(tempPath) {
   return new Promise(resolve => {
     fs.readFile(tempPath, 'utf8', function (err, contents) {
       if (contents !== undefined && contents !== 'undefined') {
+        console.log('contents---',contents)
         resolve(JSON.parse(contents));
       } else {
         console.log('dependency: ', tempPath, ' had no mapping file');
