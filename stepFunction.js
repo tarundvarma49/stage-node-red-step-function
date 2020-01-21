@@ -375,8 +375,7 @@ function fileReader(tempPath) {
   return new Promise(resolve => {
     fs.readFile(tempPath, 'utf8', function (err, contents) {
       if (contents !== undefined && contents !== 'undefined') {
-        console.log('contents---',contents)
-        resolve(JSON.parse(contents));
+         resolve(JSON.parse(contents));
       } else {
         console.log('dependency: ', tempPath, ' had no mapping file');
         resolve();
