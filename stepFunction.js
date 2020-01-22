@@ -360,7 +360,7 @@ var getLambdaMappings = async function () {
           finalObject = Object.assign({}, ...data);
           finalObject['http response'] = 'arn:aws:lambda:us-east-1:133013689155:function:http-response-node';
           finalObject['getFeeReport'] = 'arn:aws:lambda:us-east-1:133013689155:function:wdev-lambda-winsights';
-          console.log('final---',finalObject)
+          // console.log('final---',finalObject)
           resolve(finalObject)
         })
       }else{
