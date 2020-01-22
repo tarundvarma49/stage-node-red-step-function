@@ -206,9 +206,9 @@ var stepFunction = {
               j++
             })
             getLambdaMappings().then((vals) => {
-              console.log(dataEntry ,'-----------------------', vals)
+              
               sFunction.convert(dataEntry, vals).then(function (definitions) {
-                console.log('definitions---',definitions);
+                
                 definitions.forEach((def) => {
                   promises.push(sFunction.save(def))
                 })
